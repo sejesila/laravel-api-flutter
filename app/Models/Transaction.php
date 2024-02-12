@@ -14,7 +14,8 @@ class Transaction extends Model
         'category_id',
         'transaction_date',
         'description',
-        'amount',];
+        'amount',
+        'user_id'];
     protected $casts = [
         'transaction_date' => 'datetime',
     ];
