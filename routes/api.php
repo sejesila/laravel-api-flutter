@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\TransactionController;
 use App\Models\User;
@@ -25,9 +26,8 @@ Route::group(['middleware'=> 'auth:sanctum'],function (){
     Route::apiResource('categories',CategoryController::class);
     Route::apiResource('transactions',TransactionController::class);
 });
-Route::post('/tokens/create', function (Request $request) {
-    $user = User::find(1);
-    $token = $user->createToken($user->email);
-    return ['token' => $token->plainTextToken];
-});
+Route::post('/auth/register', [AuthController::class,'register']);
+Route::post('/auth/login', [AuthController::class,'login']);
+Route::post('/auth/logout', [AuthController::class,'logout']);
+
 
